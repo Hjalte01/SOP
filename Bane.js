@@ -130,7 +130,6 @@ class Bane{
             this.baneChange = true;
             this.playerX -= (this.rectSz + this.lineSz) * (this.antalRowsJump + 1) + this.playerSz;
             for(var i = 0; i < this.brik2Array.length; i++){ //gør sådan at brik2 forsvinder, så den ikke overlaper
-                print(this.brik2Array.length);
                 if(this.brik2Array[i] != undefined){
                     this.brik2Array[i] = undefined;
                     this.baneArray[i] = 2;
