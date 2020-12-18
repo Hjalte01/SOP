@@ -37,6 +37,7 @@ class Bane{
         this.brik0 = false; //i såkaldt developer mode, så kan man adde en usynlig blok, som bare er et 0 på det punkt man klikker
         this.brik1 = false; // Her adder man en rød brik der hvor man klikker
         this.brik2 = false; // her adder man en grøn brik, for at se dette, så skal du ned og udkommentere developer mode
+        this.developerMode = false;
         
         
   
@@ -148,44 +149,46 @@ class Bane{
 
                 
 
-                //dette er developer mode, hvor man nemt kan danne baner, og manuere rundt
-                /*             // <-- slet '/*' denne for at prøve developer mode
-                if(keyIsDown(48)){ // '0' når du venstrer klikker, så sletter du brikke
-                    this.brik0 = true;
-                    this.brik1 = false;
-                    this.brik2 = false;
-                }else if(keyIsDown(49)){ // '1' når du venstre klikker, så tilføjer du røde brikke
-                    this.brik0 = false;
-                    this.brik1 = true;
-                    this.brik2 = false;
-                }else if(keyIsDown(50)){ // '2' når du venstre klikker, så tilføjer du grønne brikke
-                    this.brik0 = false;
-                    this.brik1 = false;
-                    this.brik2 = true;
+                //dette er developer mode, hvor man nemt kan danne baner, og manuere rundt tryk på 'p' for at aktivere developer mode
+                if(keyIsDown(80) || this.developerMode){
+                    this.developerMode = true;
+                    if(keyIsDown(48)){ // '0' når du venstrer klikker, så sletter du brikke
+                        this.brik0 = true;
+                        this.brik1 = false;
+                        this.brik2 = false;
+                    }else if(keyIsDown(49)){ // '1' når du venstre klikker, så tilføjer du røde brikke
+                        this.brik0 = false;
+                        this.brik1 = true;
+                        this.brik2 = false;
+                    }else if(keyIsDown(50)){ // '2' når du venstre klikker, så tilføjer du grønne brikke
+                        this.brik0 = false;
+                        this.brik1 = false;
+                        this.brik2 = true;
+                    }
+                    // Dette if statement tilføjer brikkene når man ventre klikker
+                    if(mouseIsPressed && mouseButton === LEFT && this.rectXPos <= mouseX && this.rectXPos + this.rectSz >= mouseX && this.rectYPos <= mouseY && this.rectYPos + this.rectSz >= mouseY){
+                        if(this.brik0) this.baneArray[this.baneNumber] = 0;
+                        if(this.brik1) this.baneArray[this.baneNumber] = 1;
+                        if(this.brik2) this.baneArray[this.baneNumber] = 2;
+                    }
+                    if(keyIsDown(13)){ // 'enter' knap, printer banen ud i et array, som jeg kan kopiere ind i metoden banerne for at danne en ny bane
+                        this.newArrayString = '';
+                        for(var i = 0; i < 800; i++){
+                            if(i%40 == 0) this.newArrayString += '\/* ' + (i/40 + 1) + ' *\/ ';
+                            this.newArrayString += banen.baneArray[i] + ', ';
+                        }     
+                        print(this.newArrayString);
+                    }
+                    if(keyIsDown(69)){ // 'e', gør sådan at man kan lettere komme igennem banerne
+                        this.down = false;
+                        this.jump = true;
+                        this.jumped = false;
+                    }
                 }
-                // Dette if statement tilføjer brikkene når man ventre klikker
-                if(mouseIsPressed && mouseButton === LEFT && this.rectXPos <= mouseX && this.rectXPos + this.rectSz >= mouseX && this.rectYPos <= mouseY && this.rectYPos + this.rectSz >= mouseY){
-                    if(this.brik0) this.baneArray[this.baneNumber] = 0;
-                    if(this.brik1) this.baneArray[this.baneNumber] = 1;
-                    if(this.brik2) this.baneArray[this.baneNumber] = 2;
-                }
-                if(keyIsDown(13)){ // 'enter' knap, printer banen ud i et array, som jeg kan kopiere ind i metoden banerne for at danne en ny bane
-                    this.newArrayString = '';
-                    for(var i = 0; i < 800; i++){
-                        if(i%40 == 0) this.newArrayString += '\/* ' + (i/40 + 1) + ' *\/ ';
-                        this.newArrayString += banen.baneArray[i] + ', ';
-                    }     
-                    print(this.newArrayString);
-                }
-                if(keyIsDown(69)){ // 'e', gør sådan at man kan lettere komme igennem banerne
-                    this.down = false;
-                    this.jump = true;
-                    this.jumped = false;
-                }
-                */               // <-- slet '*/' denne for at prøve developer mode
-                //oven over er developer mode, jeg sætter det i kommentar når jeg aflevere det, da det ikke er en feature til spillet 
-                //Hvis du har lyst, så kan du prøve det ved at afkomentere det 'crl + k + u' for at afkommentere og 'ctl + k + c' for at kommentere det igen
-
+                //Developer mode er oven over og tryk på 'p' for at aktivere det
+                //Havde egentlig komenteret dette stykke, da jeg ikke tænkte det var en del af spillet, men det er en god visning til
+                //Hvor hjælpsomlig det er til at lave en ny bane og hvad jeg kom til at bruge noget tid på
+                
 
 
                 if(this.brik2Array[this.baneNumber] != undefined) this.brik2Array[this.baneNumber] ++; //gør sådan at de grønne blokke kan tælle op med 1
